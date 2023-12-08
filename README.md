@@ -23,6 +23,7 @@ daybook
 
 > ## Compiling in Rust
 > I compiled lots of Rust code.
+> ^D
 ```
 
 Viewing entries
@@ -34,7 +35,8 @@ ls entries
 
 ```
 cat 2024-07-07.md
-
+```
+```markdown
 # Learning Go
 Today I wrote some Go. It was fun.
 
@@ -52,7 +54,9 @@ I compiled lots of Rust code.
 
 ```ruby
 Daybook.configure do |config|
-  config.file_extension = "txt"
+  config.file_extension = "txt"             # Defaults to md
+  config.entry_dir = "/path/to/somewhere"   # Defaults to entries
+  config.date_format = "%m-%d-%Y"           # Defaults to %Y-%m-%d
 end
 
 ```
