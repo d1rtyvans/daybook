@@ -1,12 +1,9 @@
 module Daybook
   class Cli
-    ENTRIES_DIR = "entries"
-    DATE_FORMAT = "%Y-%m-%d"
-    FILE_EXTENSION = "md"
+    include Mixins::Configurable
 
-    def initialize(i: $stdin, entries_dir: ENTRIES_DIR)
+    def initialize(i: $stdin)
       @i = i
-      @entries_dir = entries_dir
     end
 
     def run
@@ -24,17 +21,13 @@ module Daybook
     end
 
     def entry_filepath
-      File.join(entries_dir, "#{entry_date}.#{file_extension}")
+      File.join(config.entry_dir, "#{entry_date}.#{config.file_extension}")
     end
 
     def entry_date
-      Date.today.strftime(DATE_FORMAT)
+      Date.today.strftime(config.date_format)
     end
 
-    def file_extension
-      FILE_EXTENSION
-    end
-
-    attr_reader :i, :entries_dir
+    attr_reader :i
   end
 end
